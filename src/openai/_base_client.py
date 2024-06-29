@@ -996,12 +996,13 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
             raise APIConnectionError(request=request) from err
 
         log.debug(
-            'HTTP Response: %s %s "%i %s" %s',
+            'HTTP Response: %s %s "%i %s" %s %s',
             request.method,
             request.url,
             response.status_code,
             response.reason_phrase,
             response.headers,
+            response.content.decode("utf-8"),
         )
         log.debug("request_id: %s", response.headers.get("x-request-id"))
 
