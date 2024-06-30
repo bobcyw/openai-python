@@ -956,7 +956,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         if self.custom_auth is not None:
             kwargs["auth"] = self.custom_auth
 
-        log.debug("Sending HTTP Request: %s %s", request.method, request.url)
+        log.debug("Sending HTTP Request: %s %s %s", request.method, request.url, request.content.decode("utf-8"))
 
         try:
             response = self._client.send(
